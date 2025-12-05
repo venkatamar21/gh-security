@@ -30,7 +30,7 @@ jobs:
         run: npm run test
       - name: Upload test report
         if: failure() && steps.run-tests.outcome == 'failure'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-report
           path: test.json
@@ -45,7 +45,7 @@ jobs:
       - name: Build website
         run: npm run build
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files
           path: dist
@@ -68,13 +68,13 @@ jobs:
       - name: Get AWS permissions
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::935244546890:role/GitHubDemo1
+          role-to-assume: arn:aws:iam::450226343468:role/GitHubDemo1
           aws-region: us-east-1
       - name: Deploy site
         id: deploy
         uses: ./.github/actions/deploy-s3-docker
         with:
-          bucket: gha-custiom-action-hosting
+          bucket: gha-security-hosting-demo
           dist-folder: ./dist
           # bucket-region: us-east-2
       - name: Output information
