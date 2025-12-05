@@ -74,7 +74,7 @@ jobs:
         id: deploy
         uses: ./.github/actions/deploy-s3-docker
         with:
-          bucket: gha-security-hosting-demo
+          bucket: gha-custiom-action-hosting
           dist-folder: ./dist
           # bucket-region: us-east-2
       - name: Output information
